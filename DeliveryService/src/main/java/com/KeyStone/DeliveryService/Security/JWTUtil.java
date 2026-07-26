@@ -6,7 +6,14 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 import com.KeyStone.DeliveryService.Entity.UserAuth;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.JwtException;
+
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
  
 import java.util.HashMap;
 import java.util.Map;
@@ -30,13 +37,14 @@ public class JWTUtil {
         }
         key=Keys.hmacShaKeyFor(secret.getBytes());
 
+        
     }
-
+    
     public String generateToken(UserAuth user){
         Map<String,Object> claims=new HashMap<>();
         claims.put("Role",user.getRole());
 
-        Set<Permission>permission=RoleBasedPermissions.getRoleBasedPermissons().get(user.getRole());
+        Set<Permission>permission=RoleBasedPermissions.getRoleBasedPermissions().get(user.getRole());
         
         Date now =new Date();
         Date expire= new Date(now.getTime()+validateTime);
@@ -56,7 +64,7 @@ public class JWTUtil {
             return true;
 
         }
-        catch(JwtExeption e){
+        catch(JwtException e){
             return false;
         }
     }
@@ -65,7 +73,7 @@ public class JWTUtil {
         return Jwts.parserBuilder()
         .setSigningKey(key)
         .build()
-        .parseClaimsJws(token)
+        .parseSignedClaims(token)
         .getBody();
     }
 

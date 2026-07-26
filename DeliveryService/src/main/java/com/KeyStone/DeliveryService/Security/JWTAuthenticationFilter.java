@@ -8,6 +8,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException; 
 
 
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
@@ -34,8 +39,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 token = authHeader.substring(7);
             }
             if(token != null && jwtUtil.validateToken(token)) {
-                String userEmail = jwtUtil.extractUserEmail(token);
-                UserDetails userDetails = customUseDetailsService.loadUserByUserEmail(userEmail);
+                String userEmail = jwtUtil.getUserEmail(token);
+                UserDetails userDetails = customUseDetailsService.loadUserByUsername(userEmail);
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

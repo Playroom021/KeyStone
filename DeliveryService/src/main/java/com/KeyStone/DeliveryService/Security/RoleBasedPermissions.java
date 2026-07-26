@@ -1,7 +1,11 @@
 package com.KeyStone.DeliveryService.Security;
 
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
+
 import com.KeyStone.DeliveryService.ENUM.Permission;
 import com.KeyStone.DeliveryService.ENUM.Role;
 
@@ -9,7 +13,7 @@ public class RoleBasedPermissions {
 
     public static Map<Role,Set<Permission>>getRolebasedPermissions(){
         Map<Role,Set<Permission>>Permissions = new HashMap<>();
-        Permissions.put(Role.MANAGER, new HashSet<>(Array.asList(Permission.CREATE_USER,
+        Permissions.put(Role.MANAGER, new HashSet<>(Arrays.asList(Permission.CREATE_USER,
             Permission.UPDATE_USER,
             Permission.DELETE_USER,
             Permission.VIEW_USER,
