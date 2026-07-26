@@ -10,6 +10,8 @@ import com.KeyStone.DeliveryService.Entity.UserAuth;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.User;
 
+import java.util.Collections;
+
 @Service
 
 public class CustomUseDetailsService implements UserDetailsService {
@@ -21,6 +23,12 @@ public class CustomUseDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         UserAuth user = userAuthRepository.findByUserEmail(userEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + userEmail));
-        return new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getPassword());
+
+        return new User(
+                user.getUserEmail(),
+                user.getPassword(),
+                Collections.emptyList()
+        );
+        // return new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getPassword());
     }
 }

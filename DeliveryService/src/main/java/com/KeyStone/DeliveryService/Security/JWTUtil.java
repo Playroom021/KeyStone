@@ -44,7 +44,7 @@ public class JWTUtil {
         Map<String,Object> claims=new HashMap<>();
         claims.put("Role",user.getRole());
 
-        Set<Permission>permission=RoleBasedPermissions.getRoleBasedPermissions().get(user.getRole());
+        Set<Permission>permission=RoleBasedPermissions.getRolebasedPermissions().get(user.getRole());
         
         Date now =new Date();
         Date expire= new Date(now.getTime()+validateTime);
@@ -60,7 +60,7 @@ public class JWTUtil {
 
     public boolean validateToken(String token){
         try{
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaims(token);
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
 
         }
@@ -73,7 +73,7 @@ public class JWTUtil {
         return Jwts.parserBuilder()
         .setSigningKey(key)
         .build()
-        .parseSignedClaims(token)
+        .parseClaimsJws(token)
         .getBody();
     }
 
