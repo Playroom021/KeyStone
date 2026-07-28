@@ -1,7 +1,12 @@
 package com.KeyStone.DeliveryService.Entity;
+
+import java.util.Date;
+
 import com.KeyStone.DeliveryService.ENUM.Role;
+
 import jakarta.persistence.*;
 import lombok.*;
+
 
 
 @Entity
@@ -13,85 +18,114 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-
 public class UserAuth {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(nullable=false)
+	private String userName;
+	
+	@Column(unique=true,nullable=false)
+	private String userEmail;
+	
+	@Column(nullable=false)
+	private String password;
+	
+	private String phone;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
+	private String resetToken;
+	private Date tokenExpireTime;
+	
+//  public UserAuth() {}
+//  public UserAuth(Long id,
+//	         String userName,
+//	         String userEmail,
+//	         String password,
+//	         String phone,
+//	         Role role) {
+//	  
+//	  this.id=id;
+//	  this.userName=userName;
+//	  this.userEmail=userEmail;
+//	  this.password=password;
+//	  this.phone=phone;
+//	  this.role=role;
+//	  
+//  }
+//	
+	
+	public Long getId() {
+		return id;
+	}
 
-    @Column(nullable=false)
-    private String userName;
-    
-    @Column(unique=true,nullable=false)
-    private String userEmail; 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    private String phone;
-    
-    @Column(nullable=false)
-    private String password;
-    
-    @Enumerated(EnumType.STRING)
-    private Role role;
+	public String getUserName() {
+		return userName;
+	}
 
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    // public UserAuth(
-    //         Long id,
-    //         String userName,
-    //         String userEmail,
-    //         String phone,
-    //         String password,
-    //         Role role)
-    //         {
-    //             this.id = id;
-    //             this.userName = userName;
-    //             this.userEmail = userEmail;
-    //             this.phone = phone;
-    //             this.password = password;
-    //             this.role = role;
+	public String getUserEmail() {
+		return userEmail;
+	}
 
-    //         }
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 
+	public String getPhone() {
+		return phone;
+	}
 
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Role getRole() {
+		return role;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public String getUserEmail() {
-        return userEmail;
-    }   
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public Role getRole() {
-        return role;
-    }
-    public void setRole(Role role) {
-        this.role = role;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	public Date getTokenExpireTime() {
+		return tokenExpireTime;
+	}
+
+	public void setTokenExpireTime(Date tokenExpireTime) {
+		this.tokenExpireTime = tokenExpireTime;
+	}
+	
+	
+	
+	
+	
 }
