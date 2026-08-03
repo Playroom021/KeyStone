@@ -21,6 +21,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
 	private JWTUtil jwtUtil;
 	
 	@Autowired
+
 	private CustomUserDetailsService customUserDetails;
 	
 	@Autowired
@@ -49,7 +50,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
 			
 			String userEmail= jwtUtil.getUserEmail(token);
 					
-					UserDetails userDetails= customUserDetails.loadUserByUserEmail(userEmail);
+					UserDetails userDetails= customUserDetails.loadUserByUsername(userEmail);
 			
 			UsernamePasswordAuthenticationToken authentication = 
 					  new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
