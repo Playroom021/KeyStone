@@ -24,7 +24,8 @@ public class EmailLog {
 	@Column(length=5000)
 	private String body;
 	private boolean sentStatus;
-	private LocalDateTime sentAt= LocalDateTime.now();
+	@Builder.Default
+	private LocalDateTime sentAt = LocalDateTime.now();
 
 	public EmailLog(String recipientEmail, String subject, String body, boolean sentStatus) {
 		this.recipientEmail=recipientEmail;

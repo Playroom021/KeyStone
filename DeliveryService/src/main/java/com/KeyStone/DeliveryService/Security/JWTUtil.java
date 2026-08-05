@@ -38,7 +38,7 @@ public class JWTUtil {
 		Map<String,Object>claims= new HashMap<>();
 		claims.put("Role", user.getRole().name());
 		
-		Set<Permission>perm= RoleBasedPermissions.getRoleBasedPermissions().get(user.getRole());
+		Set<Permission> perm = RoleBasedPermissions.getRolebasedPermissions().get(user.getRole());
 		
 		Date now= new Date();
 		Date expire= new Date(now.getTime()+validateTime);

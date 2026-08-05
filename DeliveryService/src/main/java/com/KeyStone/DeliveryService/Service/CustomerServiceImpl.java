@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 
-public class CustomerServicLoginImpl implements CustomerServiceLogic {
+public class CustomerServiceImpl implements CustomerServiceLogic {
 
     @Autowired
     private CustomerRepository customerRepo;
@@ -50,7 +50,7 @@ public class CustomerServicLoginImpl implements CustomerServiceLogic {
     }
 
     @Override
-    public Customer getCustomer(Long id) {
+    public Customer getCustomerById(Long id) {
         return customerRepo.findById(id)
             .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
 
