@@ -26,7 +26,7 @@ public class EmailLogService {
 	public void sendResetPasswordMail(String to,String token) {
 		
 		String resetPasswordLink=
-				 "http://localhost:7373/user_auth/reset-password?token="+token;
+				 "http://localhost:6767/user_auth/reset-password?token="+token;
 		
 		SimpleMailMessage message= new SimpleMailMessage();
 		
@@ -49,7 +49,7 @@ public class EmailLogService {
 			
 			helper.setTo(email.recipientEmail);
 			helper.setSubject(email.subject);
-			helper.setText(email.body);
+			helper.setText(email.Body);
 			
 			javaMailSender.send(message);
 			
@@ -62,7 +62,7 @@ public class EmailLogService {
 		
 		EmailLog emailLog= new EmailLog(email.recipientEmail,
 				                        email.subject,
-				                        email.body,sentStatus);
+				                        email.Body,sentStatus);
 		
 		
 		emailLogRepo.save(emailLog);

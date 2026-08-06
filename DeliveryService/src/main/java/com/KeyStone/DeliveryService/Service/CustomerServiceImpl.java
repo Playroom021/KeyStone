@@ -19,8 +19,6 @@ public class CustomerServiceImpl implements CustomerServiceLogic {
     @Autowired
     private CustomerRepository customerRepo;
 
-
-
     @Override
     public Customer createCustomer(Customer customer) {
 
@@ -50,6 +48,12 @@ public class CustomerServiceImpl implements CustomerServiceLogic {
     }
 
     @Override
+    public Customer getCustomerByEmail(String email) {
+        return customerRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+    }
+
+    @Override
     public Customer getCustomerById(Long id) {
         return customerRepo.findById(id)
             .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
@@ -63,11 +67,11 @@ public class CustomerServiceImpl implements CustomerServiceLogic {
 
     @Override
     public void deleteCustomer(String email) {
-        Customer customer = customerRepo.findByEmail(email);
-        if (customer == null) {
-            throw new RuntimeException("Customer not found with email: " + email);
-        }
-        customerRepo.delete(customer);  
+
+        Customer customer = customerRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Customer not found with email: " + email));
+
+        customerRepo.delete(customer);
     }
 
 }

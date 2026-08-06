@@ -9,7 +9,6 @@ import com.KeyStone.DeliveryService.Entity.Customer;
 
 @Repository
 
-
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     // Additional query methods can be defined here if needed
     Optional<Customer>findByEmail(String email);
