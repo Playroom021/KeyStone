@@ -116,7 +116,7 @@ public class UserAuthService {
 	}
 	
 	public String logout(HttpServletRequest request) {
-		String header = request.getHeader("Authorozation");
+		String header = request.getHeader("Authorization");
 		String token= jwtUtil.extractToken(header);
 		
 		if(token !=null) {

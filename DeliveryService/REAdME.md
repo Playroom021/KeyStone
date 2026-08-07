@@ -117,7 +117,7 @@ src
 ## Clone Repository
 
 ```bash
-git clone https://github.com/Playroom021/KeyStone
+git clone <YOUR_GITHUB_REPOSITORY_URL>
 ```
 
 ---
