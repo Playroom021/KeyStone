@@ -28,7 +28,7 @@ public class Customer {
     private Long id ;
 
     @Column(nullable=false)
-    private String CompanyName;
+    private String companyName;
 
     @Column(nullable=false)
     private String contactPerson;
@@ -61,10 +61,10 @@ public class Customer {
         this.id = id;
     }
     public String getCompanyName() {
-        return CompanyName;
+        return companyName;
     }
     public void setCompanyName(String companyName) {
-        CompanyName = companyName;
+        this.companyName = companyName;
     }
     public String getContactPerson() {
         return contactPerson;
